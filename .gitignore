@@ -1,0 +1,6 @@
+__pycache__/
+images/
+BGM/
+.env
+key.py
+camera.py
