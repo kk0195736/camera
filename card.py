@@ -10,17 +10,17 @@ flag = False
 # カードリーダーを取得する
 reader_list = readers()
 if len(reader_list) < 1:
-    print('カードリーダーが見つかりませんでした。')
+    print("カードリーダーが見つかりませんでした。")
     exit()
 reader = reader_list[0]
 
 # 接続する
-#print('カードリーダーに接続中...')
+# print('カードリーダーに接続中...')
 connection = reader.createConnection()
 while True:
     try:
         connection.connect()
-        #print('カードリーダーに接続しました。')
+        # print('カードリーダーに接続しました。')
 
         # カード情報を読み取る
         while True:
@@ -32,28 +32,27 @@ while True:
 
                 # 結果を出力する
                 if flag == False:
-                    print('カード情報:', uid)
+                    print("カード情報:", uid)
                     if uid == key.KI or uid == key.AI:
-                        print('open')
+                        print("open")
                         key_open()
-                        display_message('メッセージ', 'OPEN')
+                        display_message("メッセージ", "OPEN")
                     else:
-                        display_message('メッセージ', 'REJECTED')
-                        print('rejected')
+                        display_message("メッセージ", "REJECTED")
+                        print("rejected")
                     flag = True
                 # 切断する
                 connection.disconnect()
-                #print('カードリーダーから切断しました。')
+                # print('カードリーダーから切断しました。')
                 break
 
             except Exception as e:
-                print('カードリーダーからの読み取りエラー:', e)
+                print("カードリーダーからの読み取りエラー:", e)
 
     except Exception as e:
         flag = False
-        #print('カードリーダーに接続できませんでした。', e)
+        # print('カードリーダーに接続できませんでした。', e)
 
 # 切断する
 connection.disconnect()
-print('カードリーダーから切断しました。')
-
+print("カードリーダーから切断しました。")
